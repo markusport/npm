@@ -136,7 +136,8 @@ namespace npm {
     {
       auto R = static_cast<double>(i + 1);
       y_.push_back( accept_probability(breeder_[i], n, R) );
-      std::bernoulli_distribution bernoulli_fecundity( fecundityP(R) );
+      const auto Pf = fecundityP(R);
+      std::bernoulli_distribution bernoulli_fecundity( std::max(0.0, Pf) );
       for (int k=0; k<param.F0; ++k) 
       {
         if (bernoulli_fecundity(RndEng))
