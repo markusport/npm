@@ -1,7 +1,21 @@
 # npm
 Natal pylopatry model
 
+
+## Build the simulation
+
+If you are on Windows, you *can* skip the build-process and use the precompiled binary `npm.exe` in the `bin` folder. Otherwise, go ahead and build it with CMake:
+
 ```
+:~npm$ mkdir build && cd build
+:~npm/build$ cmake ..
+:~npm/build$ cmake --build . --config Release --target install
+```
+
+Tested on Linux (g++ > 8.0), MacOS (Xcode > 10) and Windows (Visual Studio 2019), this should have created the binary `:~npm/bin/npm`:
+
+```
+:~npm/bin ./npm --help
 Usage: npm [OPTION]... [OPTIONAL PARAMETER]... PARAMETER...
 Options:
   --help           prints this text and exits
