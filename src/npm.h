@@ -31,48 +31,48 @@ namespace npm {
 
 
   //! \brief mating modes
-  enum class Mating : int
+  enum Mating
   {
-    RANDOM,
-    RESIDENCY,
-    MAX_MODE
+    MATING_RANDOM,
+    MATING_RESIDENCY,
+    MATING_MAX
   };
 
 
   //! \brief offspring vote
-  enum class oVote : int
+  enum oVote
   {
-    IGNORE,         //!< always 1.0
-    ACCOUNT,        //!< x(n,R)
-    MAX_OVOTE
+    OVOTE_IGNORE,         //!< always 1.0
+    OVOTE_ACCOUNT,        //!< x(n,R)
+    OVOTE_MAX
   };
 
 
-  //! \brief offspring vote
-  enum class bVote : int
+  //! \brief breeder vote
+  enum bVote
   {
-    IGNORE,         //!< always 1.0
-    KIN,            //!< y(n,R)
-    DESPOTIC,       //!< y(n,1)
-    EGALITARIAN,    //!< average y(n,R)
-    HIERARCHICAL,   //!< average y(n,R), R <= R mother
-    MAX_BVOTE
+    BVOTE_IGNORE,         //!< always 1.0
+    BVOTE_KIN,            //!< y(n,R)
+    BVOTE_DESPOTIC,       //!< y(n,1)
+    BVOTE_EGALITARIAN,    //!< average y(n,R)
+    BVOTE_HIERARCHICAL,   //!< average y(n,R), R <= R mother
+    BVOTE_MAX
   };
 
 
   //! \brief offspring placement
-  enum class oPlacement
+  enum oPlacement
   {
-    BACK,
-    SORT,
-    MAX_OPLACEMENT
+    OPLACEMENT_BACK,
+    OPLACEMENT_SORT,
+    OPLACEMENT_MAX
   };
 
 
-  extern const char* mating_name[Mating::MAX_MODE];
-  extern const char* ovote_name[oVote::MAX_OVOTE];
-  extern const char* bvote_name[bVote::MAX_BVOTE];
-  extern const char* oplacement_name[oPlacement::MAX_OPLACEMENT];
+  extern const char* mating_name[Mating::MATING_MAX];
+  extern const char* ovote_name[oVote::OVOTE_MAX];
+  extern const char* bvote_name[bVote::BVOTE_MAX];
+  extern const char* oplacement_name[oPlacement::OPLACEMENT_MAX];
   
 
   //! \brief allele gene loci
@@ -162,9 +162,9 @@ namespace npm {
     bool oprof = false;                       //!< profiling
     bool oany = false;                        //!< any of the above
     Mating mode;                              //!< mating mode
-    oVote ovote = oVote::ACCOUNT;             //!< offspring vote
-    bVote bvote = bVote::DESPOTIC;            //!< breeder vote
-    oPlacement oplacement = oPlacement::SORT; //!< offspring placement mode
+    oVote ovote = oVote::OVOTE_ACCOUNT;             //!< offspring vote
+    bVote bvote = bVote::BVOTE_DESPOTIC;            //!< breeder vote
+    oPlacement oplacement = oPlacement::OPLACEMENT_SORT; //!< offspring placement mode
 
 
     double thetaB() const { return (Sb - Smax * (1.0 - std::exp(-gamma))) / std::exp(-gamma); }

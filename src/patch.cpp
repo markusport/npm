@@ -92,7 +92,7 @@ namespace npm {
 
 
   template <>
-  void Patch::do_reproduction<Mating::RANDOM>(Parameter const& param, container_t const& male_floater)
+  void Patch::do_reproduction<Mating::MATING_RANDOM>(Parameter const& param, container_t const& male_floater)
   {
     prepare_reproduction();
     if (!(male_floater.empty() || empty()))
@@ -106,7 +106,7 @@ namespace npm {
   
 
   template <>
-  void Patch::do_reproduction<Mating::RESIDENCY>(Parameter const& param,container_t const&)
+  void Patch::do_reproduction<Mating::MATING_RESIDENCY>(Parameter const& param,container_t const&)
   {
     prepare_reproduction();
     if (!(male_.empty() || empty()))
@@ -178,7 +178,7 @@ namespace npm {
 
 
   template <>
-  void Patch::do_dispersal<oPlacement::BACK>(Parameter const& param, container_t& female_floater, container_t& male_floater)
+  void Patch::do_dispersal<oPlacement::OPLACEMENT_BACK>(Parameter const& param, container_t& female_floater, container_t& male_floater)
   {
     disperse_males_and_poll(male_floater);
     auto const oldN = breeder_.size();
@@ -199,7 +199,7 @@ namespace npm {
 
 
   template <>
-  void Patch::do_dispersal<oPlacement::SORT>(Parameter const& param, container_t& female_floater, container_t& male_floater)
+  void Patch::do_dispersal<oPlacement::OPLACEMENT_SORT>(Parameter const& param, container_t& female_floater, container_t& male_floater)
   {
     disperse_males_and_poll(male_floater);
     size_t rank_shift = 0;
@@ -226,37 +226,37 @@ namespace npm {
 
   // Voting system
   
-  template <> double Patch::offspring_vote<oVote::IGNORE>(size_t) const
+  template <> double Patch::offspring_vote<oVote::OVOTE_IGNORE>(size_t) const
   {
     return 1.0;
   }
 
 
-  template <> double Patch::offspring_vote<oVote::ACCOUNT>(size_t ioffs) const
+  template <> double Patch::offspring_vote<oVote::OVOTE_ACCOUNT>(size_t ioffs) const
   {
     return x_[ioffs];
   }
 
 
-  template <> double Patch::breeder_vote<bVote::IGNORE>(size_t) const
+  template <> double Patch::breeder_vote<bVote::BVOTE_IGNORE>(size_t) const
   {
     return 1.0;
   }
 
 
-  template <> double Patch::breeder_vote<bVote::KIN>(size_t ioffs) const
+  template <> double Patch::breeder_vote<bVote::BVOTE_KIN>(size_t ioffs) const
   {
     return y_[R_[ioffs] - 1];
   }
 
 
-  template <> double Patch::breeder_vote<bVote::DESPOTIC>(size_t) const
+  template <> double Patch::breeder_vote<bVote::BVOTE_DESPOTIC>(size_t) const
   {
     return y_[0];
   }
 
 
-  template <> double Patch::breeder_vote<bVote::EGALITARIAN>(size_t) const
+  template <> double Patch::breeder_vote<bVote::BVOTE_EGALITARIAN>(size_t) const
   {
     double res = 0.0;
     auto N = breeder_.size();
@@ -268,7 +268,7 @@ namespace npm {
   }
 
 
-  template <> double Patch::breeder_vote<bVote::HIERARCHICAL>(size_t ioffs) const
+  template <> double Patch::breeder_vote<bVote::BVOTE_HIERARCHICAL>(size_t ioffs) const
   {
     double res = 0.0;
     auto N = static_cast<size_t>(R_[ioffs]);
@@ -284,16 +284,16 @@ namespace npm {
   {
     switch (param.ovote)
     {
-      case oVote::IGNORE: offspring_vote_pmf = &Patch::offspring_vote<oVote::IGNORE>; break;
-      case oVote::ACCOUNT: offspring_vote_pmf = &Patch::offspring_vote<oVote::ACCOUNT>; break;
+      case oVote::OVOTE_IGNORE: offspring_vote_pmf = &Patch::offspring_vote<oVote::OVOTE_IGNORE>; break;
+      case oVote::OVOTE_ACCOUNT: offspring_vote_pmf = &Patch::offspring_vote<oVote::OVOTE_ACCOUNT>; break;
     }
     switch (param.bvote)
     {
-      case bVote::IGNORE: breeder_vote_pmf = &Patch::breeder_vote<bVote::IGNORE>; break;
-      case bVote::KIN: breeder_vote_pmf = &Patch::breeder_vote<bVote::KIN>; break;
-      case bVote::DESPOTIC: breeder_vote_pmf = &Patch::breeder_vote<bVote::DESPOTIC>; break;
-      case bVote::EGALITARIAN: breeder_vote_pmf = &Patch::breeder_vote<bVote::EGALITARIAN>; break;
-      case bVote::HIERARCHICAL: breeder_vote_pmf = &Patch::breeder_vote<bVote::HIERARCHICAL>; break;
+      case bVote::BVOTE_IGNORE: breeder_vote_pmf = &Patch::breeder_vote<bVote::BVOTE_IGNORE>; break;
+      case bVote::BVOTE_KIN: breeder_vote_pmf = &Patch::breeder_vote<bVote::BVOTE_KIN>; break;
+      case bVote::BVOTE_DESPOTIC: breeder_vote_pmf = &Patch::breeder_vote<bVote::BVOTE_DESPOTIC>; break;
+      case bVote::BVOTE_EGALITARIAN: breeder_vote_pmf = &Patch::breeder_vote<bVote::BVOTE_EGALITARIAN>; break;
+      case bVote::BVOTE_HIERARCHICAL: breeder_vote_pmf = &Patch::breeder_vote<bVote::BVOTE_HIERARCHICAL>; break;
     }
   }
 

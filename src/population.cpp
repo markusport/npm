@@ -15,7 +15,7 @@ namespace npm {
     auto Default = Individual(param);
     for (size_t i = 0; i < M; ++i) 
     {
-      patches_.emplace_back(Default, (param.mode==Mating::RESIDENCY ? &Default : nullptr));
+      patches_.emplace_back(Default, (param.mode==Mating::MATING_RESIDENCY ? &Default : nullptr));
     }
     for (size_t i = M; i < param.m; ++i) patches_.emplace_back();
     for (size_t i=0; i < param.nmf; ++i) male_floater_.emplace_back(Default);
@@ -45,7 +45,7 @@ namespace npm {
 
 
   template <>
-  TakeoverStats Population::do_colonization<Mating::RANDOM>(Parameter const& param)
+  TakeoverStats Population::do_colonization<Mating::MATING_RANDOM>(Parameter const& param)
   {
     TakeoverStats tc{0, 0, 0};
     if (female_floater_.empty()) return tc;
@@ -81,9 +81,9 @@ namespace npm {
 
 
   template <>
-  TakeoverStats Population::do_colonization<Mating::RESIDENCY>(Parameter const& param)
+  TakeoverStats Population::do_colonization<Mating::MATING_RESIDENCY>(Parameter const& param)
   {
-    auto tc = do_colonization<Mating::RANDOM>(param);  // same for females
+    auto tc = do_colonization<Mating::MATING_RANDOM>(param);  // same for females
     for (auto& patch : patches_)
     {
       if (male_floater_.empty()) return tc;

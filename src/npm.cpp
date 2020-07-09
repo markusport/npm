@@ -14,8 +14,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <regex>
-#include <omp.h>
-#include "Population.h"
+#include "population.h"
 #include "visitors.h"
 
 
@@ -26,10 +25,10 @@ namespace npm {
   
 
   const char* Version = "0.2.1";
-  const char* mating_name[Mating::MAX_MODE] = { "random", "residency" };
-  const char* oplacement_name[oPlacement::MAX_OPLACEMENT] = { "back", "sort" };
-  const char* ovote_name[oVote::MAX_OVOTE] = { "ignore", "account" };
-  const char* bvote_name[bVote::MAX_BVOTE] = { "ignore", "kin", "despotic", "egalitarian", "hierarchical" };
+  const char* mating_name[Mating::MATING_MAX] = { "random", "residency" };
+  const char* oplacement_name[oPlacement::OPLACEMENT_MAX] = { "back", "sort" };
+  const char* ovote_name[oVote::OVOTE_MAX] = { "ignore", "account" };
+  const char* bvote_name[bVote::BVOTE_MAX] = { "ignore", "kin", "despotic", "egalitarian", "hierarchical" };
 
 
   //! \brief The Simulation
@@ -37,7 +36,7 @@ namespace npm {
   {
   public:
     //! \brief creates the simulation
-    Simulation(Parameter const& param);
+    explicit Simulation(Parameter const& param);
 
     //! Model loop
     template <Mating MODE, oPlacement PLACEMENT>
@@ -72,7 +71,6 @@ namespace npm {
     takeover_stats_log_{ 0, 0, 0 },
     takeover_stats_clog_{ 0, 0, 0 }
   {
-    if (omp_get_thread_num() != 0) param_.oany = false;
     // prepare R file
     fs::create_directories(param_.offile.parent_path());
     of_.open(param_.offile, std::fstream::out | std::fstream::trunc);
@@ -353,11 +351,11 @@ namespace npm {
       }
       param.rep = r;
       Simulation sim(param);
-      param.mode == Mating::RANDOM
-        ? (param.oplacement == oPlacement::BACK ? sim.run<Mating::RANDOM, oPlacement::BACK>()
-           : sim.run<Mating::RANDOM, oPlacement::SORT>())
-        : (param.oplacement == oPlacement::BACK ? sim.run<Mating::RESIDENCY, oPlacement::BACK>()
-           : sim.run<Mating::RESIDENCY, oPlacement::SORT>());
+      param.mode == Mating::MATING_RANDOM
+        ? (param.oplacement == oPlacement::OPLACEMENT_BACK ? sim.run<Mating::MATING_RANDOM, oPlacement::OPLACEMENT_BACK>()
+           : sim.run<Mating::MATING_RANDOM, oPlacement::OPLACEMENT_SORT>())
+        : (param.oplacement == oPlacement::OPLACEMENT_BACK ? sim.run<Mating::MATING_RESIDENCY, oPlacement::OPLACEMENT_BACK>()
+           : sim.run<Mating::MATING_RESIDENCY, oPlacement::OPLACEMENT_SORT>());
       if (param.R)
       {
         auto cmd = std::string("start ") + param.Rs + std::string(" RScript \"") + fs::absolute(param.offile).generic_string() + "\"";

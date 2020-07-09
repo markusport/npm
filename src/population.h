@@ -100,11 +100,11 @@ namespace npm{
   //
 
   template <>
-  TakeoverStats Population::do_colonization<Mating::RANDOM>(Parameter const& param);
+  TakeoverStats Population::do_colonization<Mating::MATING_RANDOM>(Parameter const& param);
 
 
   template <>
-  TakeoverStats Population::do_colonization<Mating::RESIDENCY>(Parameter const& param);
+  TakeoverStats Population::do_colonization<Mating::MATING_RESIDENCY>(Parameter const& param);
 
 
   //

@@ -9,7 +9,7 @@
 #include <ostream>
 #include <utility>
 #include <functional>
-#include "Individual.h"
+#include "individual.h"
 #include "patch.h"
 
 

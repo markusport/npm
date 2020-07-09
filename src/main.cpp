@@ -103,7 +103,10 @@ int main(int argc, const char* argv[])
     param.oany = param.ot || param.og || param.om || param.off || param.omf || param.oa || param.oxy || param.oto || param.oprof;
 
     param.log = clp.required<size_t>("log");
-    param.offile = clp.required<std::string>("file");
+    param.offile = clp.required<fs::path>("file");
+    if (param.offile.parent_path().empty()) {
+      param.offile = fs::path(".") / param.offile;
+    }
     param.nmf = clp.required<size_t>("nmf");
 
     std::string pstr = clp.required<std::string>("mode");
