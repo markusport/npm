@@ -1,5 +1,5 @@
 /*! \file patch.h
-* \brief Declaration of a patch in the natal philopatry model
+* \brief Declaration of a patch (home-range) in the natal philopatry model
 *
 */
 
@@ -31,7 +31,7 @@ namespace npm {
 
   //! \brief A patch
   //!
-  //! A patch is a collection of breeders.
+  //! A patch is a collection of breeders. A.k.a home-range
   //! The first breeder in the collection is the dominant one.
   class Patch
   {

@@ -26,9 +26,9 @@ Optional parameter as name=value pairs (in brackets the default values):
   m0          percentage of initially occupied patches (90)
   nmf         initial number of male floaters (0)
   F0          baseline fecundity (1.0)
-  alpha       parameter in F(n,R) (0.1)
-  delta       parameter in F(n,R) (0.0)
-  k           parameter in F(n,R) (10)
+  phi         scramble competition parameter in F(n,R) (0.1)
+  delta       contest competition parameter in F(n,R) (0.0)
+  k           helping parameter in F(n,R) (10)
   Alleles     initial alleles as string ('5 0 0 5 0 0')
   Mask        alleles mask as string ('1 1 1 1 1 1')
   Sb          survival probability breeder (0.8)
@@ -36,12 +36,12 @@ Optional parameter as name=value pairs (in brackets the default values):
   Sff         survival probability female floater (0.6)
   Smf         survival probability male floater (0.8)
   Smax        maximum survival (longevity) (0.95)
-  gamma       shape parameter in Sx() (1.0)
+  sigma       shape parameter in Sx() (1.0)
   eps         patch search efficiency (0.005)
   t0          baseline takeover probability (0.05)
-  d           benefit for communal territory defense (1.0)
+  tau         benefit for communal territory defense (1.0)
   mu          mutation probability (0.01)
-  sigma       scaling parameter mutation distribution (0.1)
+  gamma       scaling parameter mutation distribution (0.1)
   ovote       'ignore' or 'account' ('account')
   bvote       one of 'ignore', 'kin', 'despotic', 'egalitarian' 'hierarchical' ('despotic')
   oplacement  offspring hierarchies placement 'back' or 'sort' ('sort')
@@ -60,7 +60,7 @@ Required parameter as name=value pairs:
 
 Examples:
   npm --verbose mode=random nmf=900 log=100 file=res1.R
-  npm -v mode=residency nmf=0 eps=0.0001 mu=0.001 sigma=0.01 ticks=1e6 log=10000 file=res2.R
+  npm -v mode=residency nmf=0 eps=0.0001 mu=0.001 gamma=0.01 ticks=1e6 log=10000 file=res2.R
 )";
 
 
@@ -127,7 +127,7 @@ int main(int argc, const char* argv[])
     clp.optional("m", param.m);
     clp.optional("m0",param.m0);
     clp.optional("F0", param.F0);
-    clp.optional("alpha", param.alpha);
+    clp.optional("phi", param.phi);
     clp.optional("delta", param.delta);
     clp.optional("k", param.k);
     clp.optional("Alleles", param.alleles);
@@ -137,12 +137,12 @@ int main(int argc, const char* argv[])
     clp.optional("Sff", param.Sff);
     clp.optional("Smf", param.Smf);
     clp.optional("Smax", param.Smax);
-    clp.optional("gamma", param.gamma);
+    clp.optional("sigma", param.sigma);
     clp.optional("eps", param.eps);
     clp.optional("t0", param.t0);
-    clp.optional("d", param.d);
+    clp.optional("tau", param.tau);
     clp.optional("mu", param.mu);
-    clp.optional("sigma", param.sigma);
+    clp.optional("gamma", param.gamma);
     clp.optional("rep", param.rep);
     clp.optional("repOfs", param.repOfs);
     param.R = clp.flag("-R");

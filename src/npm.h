@@ -120,7 +120,7 @@ namespace npm {
     double m0 = 90;                           //!< initially occupied patches [%]
     size_t nmf = 0;                           //!< initial number of male floaters
     size_t F0 = 1;                            //!< baseline fecundity
-    double alpha = 0.1;                       //!< parameter in F(n,R)
+    double phi = 0.1;                       //!< parameter in F(n,R)
     double delta = 0.0;                       //!< parameter in F(n,R)
     double k = 10.0;                          //!< parameter in F(n,R)
     Alleles alleles = { 
@@ -134,12 +134,12 @@ namespace npm {
     double Sff = 0.6;                         //!< survival probability female floater
     double Smf = 0.8;                         //!< survival probability male floater
     double Smax = 0.95;                       //!< maximum survival (longevity)
-    double gamma = 1.0;                       //!< parameter in Sx(n)
+    double sigma = 1.0;                       //!< parameter in Sx(n)
     double eps = 0.005;                       //!< patch search efficiency
     double t0 = 0.05;                         //!< baseline takeover probability
-    double d = 1.0;                           //!< benefit for communal territory defense
+    double tau = 1.0;                           //!< benefit for communal territory defense
     double mu = 0.1;                          //!< mutation probability
-    double sigma = 0.01;                      //!< standard deviation mutation distribution
+    double gamma = 0.01;                      //!< standard deviation mutation distribution
     size_t ticks = 1000;                      //!< Time ticks to run
     size_t rep = 1;                           //!< Repetitions
     size_t repOfs = 0;                        //!< Start of repetition counter
@@ -167,8 +167,8 @@ namespace npm {
     oPlacement oplacement = oPlacement::OPLACEMENT_SORT; //!< offspring placement mode
 
 
-    double thetaB() const { return (Sb - Smax * (1.0 - std::exp(-gamma))) / std::exp(-gamma); }
-    double thetaM() const { return (Sm - Smax * (1.0 - std::exp(-gamma))) / std::exp(-gamma); }
+    double thetaB() const { return (Sb - Smax * (1.0 - std::exp(-sigma))) / std::exp(-sigma); }
+    double thetaM() const { return (Sm - Smax * (1.0 - std::exp(-sigma))) / std::exp(-sigma); }
   };
 
 

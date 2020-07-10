@@ -23,7 +23,7 @@ namespace npm {
     this->mRank = mRank;
 
     std::bernoulli_distribution bernoulli_mu(param.mu);
-    mutation_dist rndMut(0.0, param.sigma);
+    mutation_dist rndMut(0.0, param.gamma);
 
     // Recombination - 8 bit of randomness
     rndutils::binary_distribution binary_dist;

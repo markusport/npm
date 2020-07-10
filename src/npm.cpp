@@ -183,7 +183,7 @@ namespace npm {
     os << "m <- " << param_.m << '\n';
     os << "m0 <- " << param_.m0 << '\n';
     os << "F0 <- " << param_.F0 << '\n';
-    os << "alpha <- " << param_.alpha << '\n';
+    os << "phi <- " << param_.phi << '\n';
     os << "delta <- " << param_.delta << '\n';
     os << "k <- " << param_.k << '\n';
     os << "Alleles <- c(" << param_.alleles[0];
@@ -197,15 +197,15 @@ namespace npm {
     os << "Sff <- " << param_.Sff << '\n';
     os << "Smf <- " << param_.Smf << '\n';
     os << "Smax <- " << param_.Smax << '\n';
-    os << "gamma <- " << param_.gamma << '\n';
+    os << "sigma <- " << param_.sigma << '\n';
     os << "thetaB <- " << param_.thetaB() << '\n';
     os << "thetaM <- " << param_.thetaM() << '\n';
     os << "eps <- " << param_.eps << '\n';
     os << "t0 <- " << param_.t0 << '\n';
-    os << "d <-" << param_.d << '\n';
+    os << "tau <-" << param_.tau << '\n';
     os << "mu <- " << param_.mu << '\n';
     os << "mudist <- " << (std::is_same<mutation_dist, std::cauchy_distribution<>>::value ? "'cauchy'\n" : "'normal'\n");
-    os << "sigma <- " << param_.sigma << '\n';
+    os << "gamma <- " << param_.gamma << '\n';
     os << "mode <- '" << mating_name[(int)param_.mode] << "'\n";
     os << "ovote <- '" << ovote_name[(int)param_.ovote] << "'\n";
     os << "bvote <- '" << bvote_name[(int)param_.bvote] << "'\n";

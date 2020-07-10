@@ -65,7 +65,7 @@ namespace npm {
         }
         else
         {
-          double tprob = static_cast<double>(k) * param.t0 * std::exp(-param.d * (patch.size() - 1));
+          double tprob = static_cast<double>(k) * param.t0 * std::exp(-param.tau * (patch.size() - 1));
           takeover = std::bernoulli_distribution(tprob)(RndEng);
         }
         if (takeover)

@@ -24,7 +24,7 @@ namespace npm {
     //! \param param the parameter set
     //! \param n number of occupied sites
     fecundity(Parameter const& param, double n)
-    : fact( param.F0 * (1.0 - param.alpha * n) * (1.0 - std::exp(-param.k * n)) ),
+    : fact( param.F0 * (1.0 - param.phi * n) * (1.0 - std::exp(-param.k * n)) ),
       delta(param.delta)
     {}
 
@@ -86,8 +86,8 @@ namespace npm {
     auto n = static_cast<double>(breeder_.size());
     auto thetaB = param.thetaB(); 
     auto thetaM = param.thetaM(); 
-    do_mortality(breeder_, thetaB + (param.Smax - thetaB) * (1.0 - std::exp(-param.gamma * n)));
-    do_mortality(male_, thetaM + (param.Smax - thetaM) * (1.0 - std::exp(-param.gamma * n)));
+    do_mortality(breeder_, thetaB + (param.Smax - thetaB) * (1.0 - std::exp(-param.sigma * n)));
+    do_mortality(male_, thetaM + (param.Smax - thetaM) * (1.0 - std::exp(-param.sigma * n)));
   }
 
 
