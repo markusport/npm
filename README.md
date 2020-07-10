@@ -1,5 +1,5 @@
 # npm
-Natal pylopatry model
+Natal philopatry model
 
 
 ## Build the simulation
