@@ -29,7 +29,7 @@ Optional parameter as name=value pairs (in brackets the default values):
   phi         scramble competition parameter in F(n,R) (0.1)
   delta       contest competition parameter in F(n,R) (0.0)
   k           helping parameter in F(n,R) (10)
-  Alleles     initial alleles as string ('5 0 0 5 0 0')
+  Alleles     initial alleles A0,A1,A2,B0,B1,B2 as string ('5 0 0 5 0 0')
   Mask        alleles mask as string ('1 1 1 1 1 1')
   Sb          survival probability breeder (0.8)
   Sm          survival probability male (0.8)

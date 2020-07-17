@@ -214,11 +214,11 @@ namespace npm {
     os << "log <- " << param_.log << "\n";
     os << "aloglast <- " << (param_.aloglast ? 1 : 0) << "\n\n";
     os << "T <- list()        # Vector of log-times\n\n";
-    os << "# inherited alleles and response of the breeders\n";
+    os << "# inherited alleles and response of the breeders per log\n";
     os << "# Each element in the following lists is a matrix(..., nrow = number alleles)\n";
-    os << "allele0 <- list()\n";
-    os << "allele1 <- list()\n";
-    os << "xynR <- list()\n\n";
+    os << "allele0 <- list()  # list of first allele at gene loci A0, A1, A2, B0, B1, B2 per individual\n";
+    os << "allele1 <- list()  # list of second allele at gene loci A0, A1, A2, B0, B1, B2 per individual\n";
+    os << "xynR <- list()     # list of x(n,R) and y(n,R) per individual\n\n";
     os << "mrank <- list()    # rank of the breeders mother at birth\n";
     os << "gs <- list()       # group sizes\n";
     os << "males <- list()    # resident males\n";
