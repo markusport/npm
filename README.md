@@ -2,7 +2,7 @@
 
 This repository contains the source code of the simulation model used in:
 
-**Port et al 2020 ...**
+**Port et al 2020. The evolution of social philopatry female primates. American Journal of Physical Anthropology**
 
 Contact:  
 Dr. Markus Port  
