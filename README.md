@@ -1,6 +1,14 @@
-# npm
-Natal philopatry model
+# Natal Philopatry Model
 
+This repository contains the source code of the simulation model used in:
+
+**Port et al 2020 ...**
+
+Contact:  
+Dr. Markus Port  
++49 (0)551 3925636  
+mport@gwdg.de  
+[Luchsprojekt Uni Göttingen](http://www.uni-goettingen.de/de/das+luchsprojekt+der+universität/627418.html)  
 
 ## Building the simulation
 
@@ -10,11 +18,6 @@ If you are on Windows, you *can* skip the build-process and use the pre-compiled
 :~/npm$ mkdir build && cd build
 :~/npm/build$ cmake ..
 :~/npm/build$ cmake --build . --config Release --target install
-```
-
-generating the Doxygen source code documentation (optional)
-```
-:~/npm$ doxygen .   # create documentation in ~/npm/doc/html
 ```
 
 Tested on Linux (g++ > 8.0), MacOS (Xcode > 10) and Windows (Visual Studio 2019), this should have created the binary `:~npm/bin/npm`. If everything went well, you should be able to run:
@@ -76,10 +79,14 @@ Examples:
   npm --verbose mode=random nmf=900 log=100 file=res1.R
   npm -v mode=residency nmf=0 eps=0.0001 mu=0.001 gamma=0.01 ticks=1e6 log=10000 file=res2.R
 ```
+Generating the Doxygen source code documentation (optional)
+```
+:~/npm$ doxygen .   # create documentation in ~/npm/doc/html
+```
 
 ## Result files
 
-`npm ... file=res.R` creates an self-documented R-script, `res.R`, that can be directly sourced by R.
+`npm [...] file=res.R` creates an self-documented R-script, `res.R`, that can be directly sourced by R.
 
 ## Settings used in Port et al.
 
